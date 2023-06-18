@@ -99,10 +99,12 @@ defmodule Bumblebee.Text.TextEmbedding do
       {texts, multi?} = Shared.validate_serving_input!(input, &Shared.validate_string/1)
 
       inputs =
-        Bumblebee.apply_tokenizer(tokenizer, texts,
-          length: sequence_length,
-          return_token_type_ids: false
-        )
+        Nx.with_default_backend(Nx.BinaryBackend, fn ->
+          Bumblebee.apply_tokenizer(tokenizer, texts,
+            length: sequence_length,
+            return_token_type_ids: false
+          )
+        end)
 
       {Nx.Batch.concatenate([inputs]), multi?}
     end)
