@@ -143,6 +143,8 @@ defmodule Bumblebee do
     "LlamaModel" => {Bumblebee.Text.Llama, :base},
     "LlamaForCausalLM" => {Bumblebee.Text.Llama, :for_causal_language_modeling},
     "LlamaForSequenceClassification" => {Bumblebee.Text.Llama, :for_sequence_classification},
+    "LlavaModel" => {Bumblebee.Multimodal.Llava, :base},
+    # "LlavaForCausalLM" => {Bumblebee.Multimodal.Llava, :for_causal_language_modeling},
     "MBartForCausalLM" => {Bumblebee.Text.Mbart, :for_causal_language_modeling},
     "MBartForConditionalGeneration" => {Bumblebee.Text.Mbart, :for_conditional_generation},
     "MBartForQuestionAnswering" => {Bumblebee.Text.Mbart, :for_question_answering},
