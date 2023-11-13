@@ -143,8 +143,10 @@ defmodule Bumblebee do
     "LlamaModel" => {Bumblebee.Text.Llama, :base},
     "LlamaForCausalLM" => {Bumblebee.Text.Llama, :for_causal_language_modeling},
     "LlamaForSequenceClassification" => {Bumblebee.Text.Llama, :for_sequence_classification},
-    "LlavaModel" => {Bumblebee.Multimodal.Llava, :base},
-    # "LlavaForCausalLM" => {Bumblebee.Multimodal.Llava, :for_causal_language_modeling},
+    "LlavaForCausalLM" => {Bumblebee.Multimodal.Llava, :for_causal_language_modelling},
+    "LlavaTextModel" => {Bumblebee.Text.LlavaText, :base},
+    "LlavaTextForCausalLM" => {Bumblebee.Text.LlavaText, :for_causal_language_modelling},
+    "LlavaVisionModel" => {Bumblebee.Vision.LlavaVision, :base},
     "MBartForCausalLM" => {Bumblebee.Text.Mbart, :for_causal_language_modeling},
     "MBartForConditionalGeneration" => {Bumblebee.Text.Mbart, :for_conditional_generation},
     "MBartForQuestionAnswering" => {Bumblebee.Text.Mbart, :for_question_answering},
@@ -195,7 +197,8 @@ defmodule Bumblebee do
   }
 
   @transformers_image_processor_type_to_featurizer %{
-    "BlipImageProcessor" => Bumblebee.Vision.BlipFeaturizer
+    "BlipImageProcessor" => Bumblebee.Vision.BlipFeaturizer,
+    "CLIPImageProcessor" => Bumblebee.Vision.ClipFeaturizer
   }
 
   @model_type_to_featurizer %{
@@ -219,6 +222,7 @@ defmodule Bumblebee do
     "gpt2" => Bumblebee.Text.Gpt2Tokenizer,
     "layoutlm" => Bumblebee.Text.LayoutLmTokenizer,
     "llama" => Bumblebee.Text.LlamaTokenizer,
+    "llava" => Bumblebee.Text.LlamaTokenizer,
     "mistral" => Bumblebee.Text.LlamaTokenizer,
     "mbart" => Bumblebee.Text.MbartTokenizer,
     "roberta" => Bumblebee.Text.RobertaTokenizer,
