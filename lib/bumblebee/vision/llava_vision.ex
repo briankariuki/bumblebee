@@ -55,7 +55,7 @@ defmodule Bumblebee.Vision.LlavaVision do
         doc: "the dimensionality of the projection hidden layers"
       ],
       projector: [
-        default: "Linear",
+        default: :linear,
         doc: "the projection function"
       ],
       activation: [
@@ -261,6 +261,7 @@ defmodule Bumblebee.Vision.LlavaVision do
           projection_size: {"projection_dim", number()},
           projection_hidden_size: {"proj_hidden_size", number()},
           activation: {"hidden_act", atom()},
+          projector: {"projector", atom()},
           attention_dropout_rate: {"attention_dropdout", number()},
           layer_norm_epsilon: {"layer_norm_eps", number()},
           initializer_scale: {"initializer_range", number()},
