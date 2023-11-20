@@ -130,17 +130,12 @@ defmodule Bumblebee.Multimodal.Llava do
         "pixel_values" => inputs["pixel_values"]
       })
 
-    image_embeddings =
+    image_features =
       vision_model
       |> Axon.nx(& &1.hidden_states)
+      |> projector(vision_spec)
 
     # TODO: Determine text model inputs
-
-    image_embeddings =
-      image_embeddings[-2][1..-1//1]
-      |> Axon.dense(vision_spec.projection_hidden_size, use_bias: false)
-      |> Axon.gelu()
-      |> Axon.dense(vision_spec.projection_hidden_size, use_bias: false)
 
     text_model =
       text_spec
@@ -162,6 +157,13 @@ defmodule Bumblebee.Multimodal.Llava do
 
     # TODO: Determine model outputs
     Layers.output(%{})
+  end
+
+  defp projector(image_embeddings, vision_spec) do
+    image_embeddings[-2][1..-1//1]
+    |> Axon.dense(vision_spec.projection_hidden_size, use_bias: false)
+    |> Axon.gelu()
+    |> Axon.dense(vision_spec.projection_hidden_size, use_bias: false)
   end
 
   defimpl Bumblebee.HuggingFace.Transformers.Config do
